@@ -1,4 +1,4 @@
-# tour-guide-web
+# Fairy Tale Audio Tours
 
 Personal self-guided audio tours on-demand!
 
