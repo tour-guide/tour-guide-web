@@ -6,7 +6,8 @@ module.exports = {
     password: process.env.DB_PASS,
     database: "tourguide_db",
     host: "127.0.0.1",
-    dialect: 'mysql'
+    dialect: "mysql",
+    port: 3306
   },
   "production": {
     "username": process.env.DB_USER,
@@ -14,5 +15,5 @@ module.exports = {
     "database": process.env.DB_NAME,
     "host": process.env.DB_HOST,
     "dialect": "mysql"
-  }
+  };
 }
