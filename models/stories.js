@@ -1,6 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
   const Story = sequelize.define("Story", {
-    
     storyName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -52,4 +51,4 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   return Story;
-}
+};
