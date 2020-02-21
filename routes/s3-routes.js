@@ -6,7 +6,7 @@ const S3_BUCKET = process.env.S3_BUCKET;
 
 
 module.exports = function (app) {
-  app.get("/account", (req, res) => res.render("account.html"));
+  app.get("/new", (req, res) => res.render("new.html"));
 
 
   app.get("/sign-s3", (req, res) => {
@@ -40,7 +40,7 @@ module.exports = function (app) {
      * This function needs to be completed to handle the information in
      * a way that suits your application.
      */
-  app.post("/save-details", (req, res) => {
+  app.post("/finish-story", (req, res) => {
     // TODO: Read POSTed form data and do something useful
   });
 };
