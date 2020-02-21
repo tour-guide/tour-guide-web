@@ -41,6 +41,6 @@ module.exports = function (app) {
      * a way that suits your application.
      */
   //app.post("/finish-story", (req, res) => {
-    // TODO: Read POSTed form data and do something useful
+  // TODO: Read POSTed form data and do something useful
   //});
 };
