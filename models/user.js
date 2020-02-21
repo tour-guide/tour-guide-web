@@ -39,16 +39,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     profilePic: {
-      // stored as a link or as a blob
-    },
-    rating: {
-      // this will be created as an average of the users story ratings
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      validate: {
-        min: 0,
-        max: 5
-      }
+      type: DataTypes.STRING,
+      allowNull: true
     }
   });
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
@@ -60,5 +52,12 @@ module.exports = function(sequelize, DataTypes) {
   User.addHook("beforeCreate", function(user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
+
+  User.associate = models => {
+    User.hasMany(models.Story, {
+      onDelete: "SET NULL"
+    });
+  };
+
   return User;
 };

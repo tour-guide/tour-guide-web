@@ -1,15 +1,8 @@
 // When a user inputs more stops on their story, they will create more rows on this table
 // Multiple rows might have the same value in storyName, as all the stops belong in the same story.
 module.exports = function(sequelize, DataTypes) {
-  const Chapters = sequelize.define("Chapters", {
-    storyID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "stories.js",
-        key: "id"
-      }
-    },
+  const Chapter = sequelize.define("Chapter", {
+
     chapNumber: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -32,5 +25,14 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Chapters;
+
+  Chapter.associate = models => {
+    Chapter.belongsTo(models.Story, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+  
+  return Chapter;
 };

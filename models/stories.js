@@ -1,13 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   const Story = sequelize.define("Story", {
-    userID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "user.js",
-        key: "id"
-      }
-    },
+    
     storyName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -35,16 +28,27 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
-    },
-    rating: {
-      // gets average of all the ratings for this story from the ratings table.
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      validate: {
-        min: 0,
-        max: 5
-      }
     }
   });
+
+  Story.associate = models => {
+    Story.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+  Story.associate = models => {
+    Story.hasMany(models.Rating, {
+      onDelete: "cascade"
+    });
+  };
+
+  Story.associate = models => {
+    Story.hasMany(models.Chapter, {
+      onDelete: "cascade"
+    });
+  };
+
   return Story;
 };

@@ -1,21 +1,23 @@
 module.exports = function(sequelize, DataTypes) {
-  const Ratings = sequelize.define("Ratings", {
-    storyID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "stories.js",
-        key: "id"
-      }
-    },
+  const Rating = sequelize.define("Rating", {
+
     rating: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: false,
       validate: {
         min: 0,
         max: 5
       }
     }
   });
-  return Ratings;
+
+  Rating.associate = models => {
+    Rating.belongsTo(models.Story, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  return Rating;
 };
