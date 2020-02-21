@@ -40,7 +40,7 @@ module.exports = function (app) {
      * This function needs to be completed to handle the information in
      * a way that suits your application.
      */
-  app.post("/finish-story", (req, res) => {
+  //app.post("/finish-story", (req, res) => {
     // TODO: Read POSTed form data and do something useful
-  });
+  //});
 };
