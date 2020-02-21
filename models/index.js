@@ -38,6 +38,8 @@ db.stories.belongsTo(db.user);
 db.user.hasMany(db.stories);
 db.chapters.belongsTo(db.stories);
 db.stories.hasMany(db.chapters);
+db.ratings.belongsTo(db.stories);
+db.stories.hasMany(db.ratings);
 console.log("db.user");
 
 module.exports = db;

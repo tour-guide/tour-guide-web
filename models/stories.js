@@ -3,6 +3,10 @@ module.exports = function(sequelize, DataTypes) {
     userID: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "user.js",
+        key: "id"
+      }
     },
     storyName: {
       type: DataTypes.STRING,

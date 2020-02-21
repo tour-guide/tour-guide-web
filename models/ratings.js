@@ -2,7 +2,11 @@ module.exports = function(sequelize, DataTypes) {
   const Ratings = sequelize.define("Ratings", {
     storyID: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: "stories.js",
+        key: "id"
+      }
     },
     rating: {
       type: DataTypes.FLOAT,

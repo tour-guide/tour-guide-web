@@ -5,6 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     storyID: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "stories.js",
+        key: "id"
+      }
     },
     chapNumber: {
       type: DataTypes.INTEGER,
