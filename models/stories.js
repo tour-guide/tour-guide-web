@@ -37,6 +37,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
+  };
 
   Story.associate = models => {
     Story.hasMany(models.Rating, {
@@ -51,4 +52,4 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   return Story;
-};
+}
