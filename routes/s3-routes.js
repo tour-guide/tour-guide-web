@@ -1,27 +1,34 @@
-const aws = require("aws-sdk");
+const aws = require('aws-sdk');
 
-aws.config.region = "eu-west-1";
+aws.config.region = 'us-east-2';
+
+aws.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+})
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
+module.exports = app => {
+  const s3 = new aws.S3();
 
-module.exports = function (app) {
-  app.get("/new", (req, res) => res.render("new.html"));
+  /*
+   * Respond to GET requests to /sign-s3.
+   * Upon request, return JSON containing the temporarily-signed S3 request and
+   * the anticipated URL of the image.
+   */
+  app.get('/sign-s3', (req, res) => {
 
-
-  app.get("/sign-s3", (req, res) => {
-    const s3 = new aws.S3();
-    const fileName = req.query["file-name"];
-    const fileType = req.query["file-type"];
+    const fileName = req.query['file-name'];
+    const fileType = req.query['file-type'];
     const s3Params = {
       Bucket: S3_BUCKET,
       Key: fileName,
       Expires: 60,
-      ContentType: fileType,
-      ACL: "public-read"
+      ContentType: fileType
     };
 
-    s3.getSignedUrl("putObject", s3Params, (err, data) => {
+    s3.getSignedUrl('putObject', s3Params, (err, data) => {
       if (err) {
         console.log(err);
         return res.end();
@@ -34,13 +41,4 @@ module.exports = function (app) {
       res.end();
     });
   });
-
-  /*
-     * Respond to POST requests to /submit_form.
-     * This function needs to be completed to handle the information in
-     * a way that suits your application.
-     */
-  //app.post("/finish-story", (req, res) => {
-  // TODO: Read POSTed form data and do something useful
-  //});
-};
+}
