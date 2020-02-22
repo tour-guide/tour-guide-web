@@ -71,8 +71,35 @@ textarea{
   height: 120px;
 }
 h2{
-  font-size: 24px;
-  font-family: tangier, sans-serif;
-  font-weight: 700;
-  font-style: normal;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: gray;
+}
+.block {
+  padding: 3%;
+}
+button.btn-large{
+  position: relative;
+  border-radius: 5px!important;
+  margin: 10px;
+  padding-left: 60px!important;
+  line-height: 14px;
+}
+button.fairy-button{
+  background: #155F80!important;;
+}
+.fairy-button svg{
+  position: absolute;
+  width: 35px;
+  fill: #fff;
+  left: 15px;
+  top: 5px;
+}
+.home-link svg{
+  fill: #fff;
+  width: 50px;
+  margin-bottom: -15px;
+}
+.home-link{
+  text-transform: uppercase;
 }
