@@ -1,4 +1,78 @@
-form.signup,
-form.login {
-  margin-top: 50px;
+body {
+  background-color: #155F80;
+  background-image: linear-gradient(to bottom, #3E136B 400px, #155F80);
+  background-repeat: no-repeat;
+}
+.block{
+  background: white;
+  margin: 30px;
+  padding: 50px;
+}
+nav {
+  background: transparent;
+  box-shadow: none;
+  line-height: 18px;
+  padding: 15px 30px;
+  height: 60px;
+}
+footer {
+  color: white;
+  padding: 0px 30px 10px;
+}
+div.fullwidth-header{
+  background-image: url(../../images/FairytaleTours-HeaderImage.jpg);
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: -60px;
+  min-height: 400px;
+  width: 100%;
+}
+.relative{
+  position: relative;
+  z-index: -1;
+}
+.absolute{
+  position: absolute;
+}
+h1{
+  bottom: 0px;
+  padding: 0px 30px;
+  color: white;
+  font-family: tangier, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 40px;
+}
+input, select, textarea {
+  border: 1px solid #dfdfdf!important;
+  border-radius: 5px!important;
+  background-color: #F5FDFF!important;
+  padding: 10px!important;
+  box-sizing: border-box!important;
+}
+input, select{
+  height: 40px!important;
+}
+textarea{
+  height: 120px;
+}
+input, select, textarea {
+  border: 1px solid #dfdfdf!important;
+  border-radius: 5px!important;
+  background-color: #F5FDFF!important;
+  padding: 10px!important;
+  box-sizing: border-box!important;
+}
+input, select{
+  height: 40px!important;
+}
+textarea{
+  height: 120px;
+}
+h2{
+  font-size: 24px;
+  font-family: tangier, sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }

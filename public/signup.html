@@ -5,45 +5,64 @@
   <title>Fairy Tale Audio Tours</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.typekit.net/afd3nns.css">
+  <link href="../materialize/css/materialize.css" rel="stylesheet">
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      </div>
+  <nav>
+    <div class="nav-wrapper l12 xl8">
+      <a href="#" class="left"><span>SELF-GUIDED</br>AUDIO TOURS</span></a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="/">Home</a></li>
+      </ul>
     </div>
   </nav>
-  <div class="container">
+  <div class="fullwidth-header relative">
+    <h1 class="absolute">Once Upon a Time...</h1>
+  </div>
+  <div class="page-body">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Sign Up Form</h2>
-        <form class="signup">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
+      <div class="block s12">
+        <div class="row">
+          <div class="col xl6 l12">
+            <h2>Create An Account</h2>
+            <form class="row signup">
+              <div class="form-group col s6">
+                <input type="text" class="form-control" id="firstname-input" placeholder="First Name">
+              </div>
+              <div class="form-group col s6">
+                <input type="text" class="form-control" id="lastname-input" placeholder="Last Name">
+              </div>
+              <div class="form-group col s12">
+                <input type="email" class="form-control" id="email-input" placeholder="Email">
+              </div>
+              <div class="form-group col s12">
+                <input type="password" class="form-control" id="password-input" placeholder="Password">
+              </div>
+              <div class="form-group col s12">
+                <textarea type="bio" class="form-control" id="bio-text"
+                  placeholder="Tell us a little about yourself..."></textarea>
+              </div>
+              <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span> <span class="msg"></span>
+              </div>
+              <button type="submit" class="waves-effect waves-light btn-large">Sign Up</button>
+            </form>
+            <br />
+            <p>Or log in <a href="/login">here</a></p>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
-          </div>
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
-          <button type="submit" class="btn btn-default">Sign Up</button>
-        </form>
-        <br />
-        <p>Or log in <a href="/login">here</a></p>
+        </div>
       </div>
     </div>
   </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
-
+  <footer>
+    <div class="footer-text">© 2020 Fairytale Audio Tours</div>
+  </footer>
 </body>
 
 </html>
