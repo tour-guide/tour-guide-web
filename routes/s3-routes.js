@@ -1,11 +1,11 @@
-const aws = require('aws-sdk');
+const aws = require("aws-sdk");
 
-aws.config.region = 'us-east-2';
+aws.config.region = "us-east-2";
 
 aws.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-})
+});
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
@@ -17,10 +17,10 @@ module.exports = app => {
    * Upon request, return JSON containing the temporarily-signed S3 request and
    * the anticipated URL of the image.
    */
-  app.get('/sign-s3', (req, res) => {
+  app.get("/sign-s3", (req, res) => {
 
-    const fileName = req.query['file-name'];
-    const fileType = req.query['file-type'];
+    const fileName = req.query["file-name"];
+    const fileType = req.query["file-type"];
     const s3Params = {
       Bucket: S3_BUCKET,
       Key: fileName,
@@ -28,7 +28,7 @@ module.exports = app => {
       ContentType: fileType
     };
 
-    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    s3.getSignedUrl("putObject", s3Params, (err, data) => {
       if (err) {
         console.log(err);
         return res.end();
@@ -41,4 +41,4 @@ module.exports = app => {
       res.end();
     });
   });
-}
+};
