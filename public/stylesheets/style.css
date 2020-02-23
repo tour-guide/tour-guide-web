@@ -20,7 +20,7 @@ footer {
   padding: 0px 30px 10px;
 }
 div.fullwidth-header{
-  background-image: url(../../images/FairytaleTours-HeaderImage.jpg);
+  background-image: url(/images/FairytaleTours-HeaderImage.jpg);
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
