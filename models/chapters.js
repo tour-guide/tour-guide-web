@@ -1,8 +1,7 @@
 // When a user inputs more stops on their story, they will create more rows on this table
 // Multiple rows might have the same value in storyName, as all the stops belong in the same story.
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   const Chapter = sequelize.define("Chapter", {
-
     chapNumber: {
       type: DataTypes.INTEGER,
       allowNull: false,
