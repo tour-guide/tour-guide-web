@@ -20,7 +20,7 @@ footer {
   padding: 0px 30px 10px;
 }
 div.fullwidth-header{
-  background-image: url(../../images/FairytaleTours-HeaderImage.jpg);
+  background-image: url(/images/FairytaleTours-HeaderImage.jpg);
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
@@ -102,4 +102,17 @@ button.fairy-button{
 }
 .home-link{
   text-transform: uppercase;
+}
+div.nav-custom{
+  text-align: left;
+  display: flex;
+  width: 145px;
+  justify-content: flex-end;
+  float: right;
+}
+ul#nav-custom li{
+  height: 60px;
+}
+nav{
+  width: 100%;
 }
