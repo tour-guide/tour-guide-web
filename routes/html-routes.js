@@ -7,11 +7,9 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
 
   app.get("/", (req, res) => {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    //we don't require sign up to see available stories
+    //this route takes them to a list of available stories
+    res.sendFile(path.join(__dirname, "../public/home.html"));
   });
 
   app.get("/login", (req, res) => {
@@ -31,6 +29,7 @@ module.exports = app => {
   // this route checks if the user is authenticated before passing them along
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
+    //if the member chooses
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
