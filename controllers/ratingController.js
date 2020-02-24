@@ -24,5 +24,12 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/", (req, res) => {
+  rating.findAll({
+    attributes: [
+      [sequelize.fn("avg", sequelize.col("rating")), "ratingAverage"]
+    ]
+  });
+});
 // Export routes for server.js to use.
 module.exports = router;
