@@ -1,3 +1,5 @@
+const slugify = require("slugify");
+
 module.exports = (sequelize, DataTypes) => {
   const Story = sequelize.define("Story", {
     storyName: {
@@ -49,6 +51,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade"
     });
   };
+
+  Story.addHook("beforeValidate", Story => {
+    Story.slug = slugify(Story.storyName, { lower: true });
+    return Story;
+  });
 
   return Story;
 };
