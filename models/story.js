@@ -23,6 +23,13 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 25]
       }
     },
+    storyImage: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1]
+      }
+    },
     info: {
       type: DataTypes.TEXT,
       allowNull: true,

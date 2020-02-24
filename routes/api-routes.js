@@ -28,6 +28,33 @@ module.exports = app => {
       });
   });
 
+  app.post("/api/story", (req, res) => {
+    const { storyName, location, info, storyImage } = req.body;
+    db.Story.create({
+      storyName,
+      location,
+      info,
+      storyImage
+    })
+      .then(data => {
+        res.json(data);
+      });
+  });
+
+  app.post("/api/chapter", (req, res) => {
+    const { storyID, chapNumber, chapName, chapLocation, chapAudio } = req.body;
+    db.Chapter.create({
+      storyID,
+      chapNumber,
+      chapName,
+      chapLocation,
+      chapAudio
+    })
+      .then(data => {
+        res.json(data);
+      });
+  });
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
