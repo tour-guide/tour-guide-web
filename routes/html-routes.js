@@ -34,4 +34,19 @@ module.exports = app => {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
+  app.get("/profile/:member", (req, res) => {
+    //view the public profile of a given member
+    res.sendFile(path.join(__dirname, "../public/members.html"));
+  });
+
+  app.get("/new", isAuthenticated, (req, res) => {
+    //if user is authenticated send them to the page to create a story
+    res.sendFile(path.join(__dirname, "../public/new.html"));
+  });
+
+  app.get("/story/:story-slug", (req, res) => {
+    //send the user to the selected story
+    res.sendFile(path.join(__dirname, "../public/stories.html"));
+  });
+
 };
