@@ -1,28 +1,67 @@
-const express = require("express");
+const db = require("../models");
+// const { chapNumber, chapName, chapLocation } = chapterMeta;
 
-const router = express.Router();
+module.exports = {
+  // get all chapters by story id (view/read)
+  getAllChaps: (req, res) => {
+    const id = req.params.id;
+    db.Chapter.findAll({
+      where: { storyId: id }
+    }).then(chapterMeta => {
+      res.json(chapterMeta);
+    });
+  },
 
-const chapter = require("../models/chapter.js");
+  // get specific chapter from a story (view/read)
+  getOneChap: (req, res) => {
+    const id = req.params.id;
+    db.Chapter.findAll({
+      where: { id: id }
+    }).then(chapterMeta => {
+      res.json(chapterMeta);
+    });
+  },
 
-// get all chapters by story id (view/read)
-// get specific chapter from a story (view/read)
+  // create chapter with number, name, location and storyID
+  createChap: (req, res) => {
+    const { chapNumber, chapName, chapLocation } = req.body;
+    db.Chapter.create({
+      chapNumber,
+      chapName,
+      chapLocation
+    })
+      .then(() => {
+        res.redirect(307, "/api/login");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  },
 
-// create chapter with number, name, location and storyID
+  // update chapter number name location
+  updateChap: (req, res) => {
+    const id = req.params.id;
+    const updates = req.body.updates;
+    db.Chapter.find({
+      where: { id: id }
+    })
+      .then(chapter => {
+        return chapter.updateAttributes(updates);
+      })
+      .then(updatedChapter => {
+        res.json(updatedChapter);
+      });
+  },
 
-// update chapter number name location
-
-// delete specific chapter
-
-// "/rest of the url for the stories page"
-router.get("/", (req, res) => {
-  chapter.all(data => {
-    var hbsObject = {
-      story: data
-    };
-    console.log(hbsObject);
-    res.render("", hbsObject);
-  });
-});
-
-// Export routes for server.js to use.
-module.exports = router;
+  // delete specific chapter
+  deleteChap: (req, res) => {
+    const id = req.params.id;
+    db.Chapter
+      .destroy({
+        where: { id: id }
+      })
+      .then(deletedChapter => {
+        res.json(deletedChapter);
+      });
+  }
+};

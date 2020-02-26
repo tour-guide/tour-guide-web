@@ -1,29 +1,81 @@
-const express = require("express");
+const db = require("../models");
+// const { storyName, location, info, storyImage } = storyMeta;
 
-const router = express.Router();
+module.exports = {
+  // get all stories
+  getStories: (req, res) => {
+    db.Story.findAll().then(storyMeta => {
+      res.render("/api/story", storyMeta);
+    });
+  },
 
-const story = require("../models/story.js");
+  // get stories by location
+  getStoryByLocation: (req, res) => {
+    const locationSearch = req.body.location;
+    db.Story.findAll({
+      where: locationSearch
+    }).then(storyMeta => {
+      res.render("/api/story", storyMeta);
+    });
+  },
 
-// get all stories (view/read)
-// get stories by location (view/read)
-// get stories from a specific user (view/read)
+  // get stories from a specific user
+  getStoryByUser: (req, res) => {
+    let query;
+    if (req.params.userId) {
+      query = Story.findAll({
+        include: [
+          { model: User, where: { id: req.params.userId } },
+          { model: Story }
+        ]
+      });
+    } else {
+      query = Story.findAll({ include: [Story, User] });
+    }
+    return query.then(story => res.json(story));
+  },
 
-// create story with name, location, info and userID
+  // create story with name, location, info and userID
+  createStory: (req, res) => {
+    const { storyName, location, info, storyImage } = req.body;
+    db.Story.create({
+      storyName,
+      location,
+      info,
+      storyImage
+    })
+      .then(() => {
+        res.redirect(307, "/api/login");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  },
 
-// update name, location or info
+  // update name
+  updateStory: (req, res) => {
+    const id = req.params.id;
+    const updates = req.body.updates;
+    db.Story.find({
+      where: { id: id }
+    })
+      .then(story => {
+        return story.updateAttributes(updates);
+      })
+      .then(updatedStory => {
+        res.json(updatedStory);
+      });
+  },
 
-// delete specific story
-
-// "/rest of the url for the stories page"
-router.get("/", (req, res) => {
-  story.all(data => {
-    var hbsObject = {
-      story: data
-    };
-    console.log(hbsObject);
-    res.render("", hbsObject);
-  });
-});
-
-// Export routes for server.js to use.
-module.exports = router;
+  // delete specific story
+  deleteStory: (req, res) => {
+    const id = req.params.id;
+    db.story
+      .destroy({
+        where: { id: id }
+      })
+      .then(deletedStory => {
+        res.json(deletedStory);
+      });
+  }
+};
