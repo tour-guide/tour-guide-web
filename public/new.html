@@ -82,6 +82,12 @@
                                 <div class="form-group col s12">
                                     <input type="text" class="form-control" id="story-loc" placeholder="Location">
                                 </div>
+                                <div class="form-group col s6">
+                                    <input type="text" class="form-control" id="story-city" placeholder="City">
+                                </div>
+                                <div class="form-group col s6">
+                                    <input type="text" class="form-control" id="story-state" placeholder="State">
+                                </div>
                                 <div class="form-group col s12">
                                     <label for="story-image">Upload Tour Featured Image</label>
                                     <input type="file" name="story-image" id="story-image">
@@ -90,32 +96,27 @@
                                     <textarea type="story" class="form-control" id="story-text"
                                         placeholder="Share a little about the story you are telling."></textarea>
                                 </div>
+                                <hr>
                                 <h3>Starting point...</h3>
                                 <div class="form-group col s12">
-                                    <input type="text" class="form-control" id="ch01-name" placeholder="Name">
+                                    <input type="text" class="form-control" data-chapter="1" id="chapter-name" placeholder="Name">
                                 </div>
                                 <div class="form-group col s12">
-                                    <input type="text" class="form-control" id="ch01-loc" placeholder="Location">
+                                    <input type="text" class="form-control" data-chapter="1" id="chapter-location" placeholder="Location">
+                                </div>
+                                <div class="form-group col s6">
+                                    <input type="text" class="form-control" data-chapter="1" id="chapter-city" placeholder="City">
+                                </div>
+                                <div class="form-group col s6">
+                                    <input type="text" class="form-control" data-chapter="1" id="chapter-state" placeholder="State">
                                 </div>
                                 <div class="form-group col s12">
-                                    <label for="ch-audio">Upload Your Audio File</label>
+                                    <label for="chapter-audio">Upload Your Audio File</label>
                                     <input type="file" class="waves-effect waves-light btn-large fairy-button"
-                                        id="ch01-audio" accept="audio/*">
+                                        data-chapter="1" id="chapter-audio" accept="audio/*">
                                 </div>
-                                <hr>
-                                <h3>Chapter <span id=chNum>2</span>...</h3>
-                                <div class="form-group col s12">
-                                    <input type="text" class="form-control" id="ch02-name" placeholder="Name">
-                                </div>
-                                <div class="form-group col s12">
-                                    <input type="text" class="form-control" id="ch02-loc" placeholder="Location">
-                                </div>
-                                <div class="form-group col s12">
-                                    <label for="ch-audio">Upload Your Audio File</label>
-                                    <input type="file" class="waves-effect waves-light btn-large fairy-button"
-                                        id="ch02-audio" accept="audio/*">
-                                </div>
-                                <button type="submit" class="waves-effect waves-light btn-large fairy-button">
+                                <button type="button" id="next-chapter">Next Chapter</button>
+                                <button type="submit" id="submit-story" class="waves-effect waves-light btn-large fairy-button">
                                     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.36 96.06">
                                       <title>fairy</title>
                                       <g>
