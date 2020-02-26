@@ -2,6 +2,9 @@ $(document).ready(function () {
   const storyForm = $("form.new-story");
   const storyImage = $("#story-image");
   let uniquestoryImage = "";
+  let chapterNum = 1;
+  let storyCity = "";
+  let storyState = "";
 
   // kick off db writes when the save story button is clicked
   storyForm.on("submit", event => {
@@ -16,7 +19,42 @@ $(document).ready(function () {
 
     createStory(storyMeta);
   });
-  
+
+
+  $("#next-chapter").on("click", () => {
+    //increment chapter number
+    chapterNum++;
+    console.log("=============== chapter number ===============")
+    console.log(chapterNum);
+    //get prev city/state
+    if ($("#story-city").val()){
+      storyCity = $("#story-city").val().trim();
+    } else {
+      storyCity = "City";
+    }
+    if ($("#story-state").val()){
+      storyState = $("#story-state").val().trim();
+    } else {
+      storyState = "State";
+    }
+    const chapterblock = $("<div>");
+    const headrow = $("<hr>");
+    const chHead = $("<h3>").text(`Chapter ${chapterNum}`);
+    const chName = $("<div>").attr("class", "form-group col s12")
+      .append($("<input>").attr("type", "text").attr("class", "form-control").attr("data-chapter", chapterNum).attr("id", "chapter-name").attr("placeholder", "Name"));
+    const chLocation = $("<div>").attr("class", "form-group col s12")
+      .append($("<input>").attr("type", "text").attr("class", "form-control").attr("data-chapter", chapterNum).attr("id", "chapter-location").attr("placeholder", "Location"));
+    const chCity = $("<div>").attr("class", "form-group col s6")
+      .append($("<input>").attr("type", "text").attr("class", "form-control").attr("data-chapter", chapterNum).attr("id", "chapter-city").attr("value", storyCity));
+    const chState = $("<div>").attr("class", "form-group col s6")
+      .append($("<input>").attr("type", "text").attr("class", "form-control").attr("data-chapter", chapterNum).attr("id", "chapter-state").attr("value", storyState));
+    const chAudio = $("<div>").attr("class", "form-group col s12")
+      .append($("<label>").attr("for", "chapter-audio").text("Upload Your Audio File"))
+      .append($("<input>").attr("type", "file").attr("class", "waves-effect waves-light btn-large fairy-button").attr("data-chapter", chapterNum).attr("id", "chapter-audio").attr("accept", "audio/*"));
+    chapterblock.append(headrow).append(chHead).append(chName).append(chLocation).append(chCity).append(chState).append(chAudio);
+    $("#next-chapter").before(chapterblock);
+  });
+
   storyImage.on("change", imgUpload);
 
   function uploadFile(file, signedRequest, url) {
@@ -58,6 +96,16 @@ $(document).ready(function () {
     xhr.send();
   }
 
+  function renameFile(file) {
+    //give the file a new extension and put it back on the filename
+    const fileName = Math.random().toString(36).substring(7) + new Date().getTime();
+    newfile.key = `${fileName}/${newfile.name}`;
+    console.log("================ renamed file =================");
+    console.log(newfile.key);
+    //now pass the file to the signed request function
+    getSignedRequest(newfile);
+  }
+
   function imgUpload() {
     //get the file selected by the user
     const newfile = document.getElementById("story-image").files[0];
@@ -74,6 +122,8 @@ $(document).ready(function () {
       console.log(newfile.key);
       //now pass the file to the signed request function
       getSignedRequest(newfile);
+    }
+      renameFile(newfile);
     }
 
   }

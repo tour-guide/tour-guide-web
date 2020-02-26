@@ -1,36 +1,44 @@
 $(document).ready(function() {
   // Getting references to our form and input
-  var signUpForm = $("form.signup");
-  var emailInput = $("input#email-input");
-  var passwordInput = $("input#password-input");
+  const signUpForm = $("form.signup");
+  const fNameInput = $("#firstname-input");
+  const lNameInput = $("#lastname-input")
+  const emailInput = $("#email-input");
+  const passwordInput = $("#password-input");
+  const profile = $("#bio-text");
 
-  // When the signup button is clicked, we validate the email and password are not blank
-  signUpForm.on("submit", function(event) {
+  // When the signup button is clicked, we validate the firstname, email and password are not blank
+  signUpForm.on("submit", event => {
     event.preventDefault();
-    var userData = {
+    
+    const userData = {
+      firstName: fNameInput.val().trim(),
+      lastName: lNameInput.val().trim(),
       email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      password: passwordInput.val().trim(),
+      profile: profile.val()
     };
 
-    if (!userData.email || !userData.password) {
+    if (!userData.email || !userData.password || !userData.firstName) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password);
-    emailInput.val("");
-    passwordInput.val("");
+    signUpUser(userData.firstName, userData.lastName, userData.email, userData.password, userData.profile);
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
+  function signUpUser(firstName, lastName, email, password, profile) {
     $.post("/api/signup", {
-      email: email,
-      password: password
+      firstName,
+      lastName,
+      email,
+      password,
+      profile
     })
-      .then(function(data) {
+      .then( data => {
         window.location.replace("/members");
-        // If there's an error, handle it by throwing up a bootstrap alert
+        // If there's an error, handle it by throwing up an alert
       })
       .catch(handleLoginErr);
   }

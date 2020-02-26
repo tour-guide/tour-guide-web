@@ -36,8 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [1]
       }
-<<<<<<< Updated upstream
-=======
     },
     chapAudio: {
       type: DataTypes.STRING,
@@ -59,7 +57,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [-180, 180]
       }
->>>>>>> Stashed changes
     }
   });
 
