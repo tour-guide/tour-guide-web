@@ -1,8 +1,11 @@
+let chapterAudArray = [];
+let cNum = 0;
+let uniquestoryImage = "";
+let chapterNum = 1;
+
 $(document).ready(function () {
   const storyForm = $("form.new-story");
   const storyImage = $("#story-image");
-  let uniquestoryImage = "";
-  let chapterNum = 1;
   let storyCity = "";
   let storyState = "";
 
@@ -13,6 +16,9 @@ $(document).ready(function () {
     const storyMeta = {
       storyName: $("#story-name").val(),
       location: $("#story-loc").val().trim(),
+      storyCity: $("#story-city").val().trim(),
+      storyState: $("#story-state").val().trim(),
+      storyTransit: $("#story-transit").val(),
       info: $("#story-text").val(),
       storyImage: uniquestoryImage
     };
@@ -56,80 +62,107 @@ $(document).ready(function () {
 
   storyImage.on("change", imgUpload);
 
-  function uploadFile(file, signedRequest, url) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("PUT", signedRequest);
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          alert("File uploaded!")
-          console.log("=============== file uploaded===============")
-          console.log(url);
-          //save the name of the file to the db so we can get it later
-          uniquestoryImage = url;
-          //document.getElementById('preview').src = url;
-          //document.getElementById('avatar-url').value = url;
-        }
-        else {
-          alert("Could not upload file.");
-        }
-      }
-    };
-    xhr.send(file);
-  }
+});
 
-  function getSignedRequest(file) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", `/sign-s3?file-name=${encodeURIComponent(file.name)}&file-type=${file.type}`);
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          const response = JSON.parse(xhr.responseText);
-          uploadFile(file, response.signedRequest, response.url);
-        }
-        else {
-          alert("Could not get signed URL.");
-        }
-      }
-    };
-    xhr.send();
-  }
+$(document).on("change", "#chapter-audio", function() {
+  cNum = $(this).data("chapter")
+  audioUpload(cNum);
+});
 
-  function renameFile(file) {
-    //give the file a new extension and put it back on the filename
-    const fileName = Math.random().toString(36).substring(7) + new Date().getTime();
-    newfile.key = `${fileName}/${newfile.name}`;
-    console.log("================ renamed file =================");
-    console.log(newfile.key);
-    //now pass the file to the signed request function
+
+function uploadFile(file, signedRequest) {
+  const xhr = new XMLHttpRequest();
+  xhr.open("PUT", signedRequest);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        alert("File uploaded!")
+      }
+      else {
+        alert("Could not upload file.");
+      }
+    }
+  };
+  xhr.send(file);
+}
+
+function getSignedRequest(file) {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", `/sign-s3?file-name=${encodeURIComponent(file.name)}&file-type=${file.type}`);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        uploadFile(file, response.signedRequest, response.url);
+      }
+      else {
+        alert("Could not get signed URL.");
+      }
+    }
+  };
+  xhr.send();
+}
+
+function imgUpload() {
+  //get the file selected by the user
+  const newfile = document.getElementById("story-image").files[0];
+  //if null, don't do anything
+  if (newfile.name === null) {
+    return alert("No file selected.");
+  } else {
+    uniquestoryImage = `https://audio-tour.s3.amazonaws.com/${encodeURIComponent(newfile.name)}`;
     getSignedRequest(newfile);
   }
+}
 
-  function imgUpload() {
-    //get the file selected by the user
-    const newfile = document.getElementById("story-image").files[0];
-    console.log("============imgUpload================");
-    console.log(newfile.name);
-    //if null, don't do anything
-    if (newfile.name === null) {
-      return alert("No file selected.");
-    } else {
-      renameFile(newfile);
-    }
+function audioUpload(id) {
+  //get the file selected by the user
+  console.log("=================cNum passed through===============")
+  console.log(id);
+  const newfile = document.getElementById("chapter-audio").files[0];
+  //if null, don't do anything
+  if (newfile.name === null) {
+    return alert("No file selected.");
+  } else {
+    chapterAudArray[cNum] = `https://audio-tour.s3.amazonaws.com/${encodeURIComponent(newfile.name)}`;
+    getSignedRequest(newfile);
   }
+}
 
-  function createStory(storyMeta) {
-    const { storyName, location, info, storyImage } = storyMeta;
-
-    $.post("/api/story", {
-      storyName,
-      location,
-      info,
-      storyImage
+function createChapters(data) {
+  console.log("============passing the story id=============");
+  console.log(data.id)
+  //use chapterNum to get number of chapters
+  for (let i = 1; i <= chapterNum; i++){
+    console.log("this chapter audio is: " + chapterAudArray[chapterNum]);
+    $.post("/api/chapter", {
+      StoryId: data.id,
+      chapNumber: chapterNum,
+      chapName: $("#chapter-name").attr("data-chapter", chapterNum).val(),
+      chapLocation: $("#chapter-location").attr("data-chapter", chapterNum).val(),
+      chapCity: $("#chapter-city").attr("data-chapter", chapterNum).val(),
+      chapState: $("#chapter-state").attr("data-chapter", chapterNum).val(),
+      chapAudio: chapterAudArray[chapterNum]
     })
       .then(data => {
-        console.log("=================story data================")
-        console.log(data);
-      });
+        console.log(`Chapter ${chapterNum} created!`)
+      })
   }
-});
+}
+
+function createStory(storyMeta) {
+  const { storyName, location, storyCity, storyState, storyTransit, info, storyImage } = storyMeta;
+
+  $.post("/api/story", {
+    storyName,
+    location,
+    storyCity,
+    storyState,
+    storyTransit,
+    info,
+    storyImage
+  })
+    .then(data => {
+      createChapters(data);
+    });
+}
