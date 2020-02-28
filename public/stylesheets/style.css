@@ -218,3 +218,21 @@ button#next-chapter:hover {
   border: 1px solid grey;
   color: #fff;
 }
+/* Mandy feel free to style this properly */
+.chooseStory {
+  color:  #3E136B;
+  font-weight: 450;
+}
+
+#locationDropdown {
+  background-color: #15804B;
+  color: #fff;
+}
+
+.card-title {
+  color:  #155F80;
+}
+
+.card-action {
+  color:#15804B;
+}
