@@ -42,12 +42,14 @@ module.exports = app => {
   });
 
   app.post("/api/chapter", (req, res) => {
-    const { storyID, chapNumber, chapName, chapLocation, chapAudio } = req.body;
+    const { StoryId, chapNumber, chapName, chapLocation, chapCity, chapState, chapAudio } = req.body;
     db.Chapter.create({
-      storyID,
+      StoryId,
       chapNumber,
       chapName,
       chapLocation,
+      chapCity,
+      chapState,
       chapAudio
     })
       .then(data => {
