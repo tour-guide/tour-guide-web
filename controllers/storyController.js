@@ -35,17 +35,23 @@ module.exports = {
     return query.then(story => res.json(story));
   },
 
-  // create story with name, location, info and userID
   createStory: (req, res) => {
-    const { storyName, location, info, storyImage } = req.body;
+    const { storyName, location, storyCity, storyState, storyTransit, info, storyImage } = req.body;
+
     db.Story.create({
       storyName,
       location,
+      storyCity,
+      storyState,
+      storyTransit,
       info,
       storyImage
     })
       .then(() => {
-        res.redirect(307, "/api/login");
+        let storyID = res.id;
+        console.log("==================story id ===============");
+        console.log(storyID);
+        res.redirect(307, `/api/story/${storyID});
       })
       .catch(err => {
         res.status(401).json(err);
