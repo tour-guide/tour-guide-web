@@ -30,8 +30,6 @@ $(document).ready(function () {
   $("#next-chapter").on("click", () => {
     //increment chapter number
     chapterNum++;
-    console.log("=============== chapter number ===============")
-    console.log(chapterNum);
     //get prev city/state
     if ($("#story-city").val()){
       storyCity = $("#story-city").val().trim();
@@ -118,8 +116,6 @@ function imgUpload() {
 
 function audioUpload(id) {
   //get the file selected by the user
-  console.log("=================cNum passed through===============")
-  console.log(id);
   const newfile = document.getElementById("chapter-audio").files[0];
   //if null, don't do anything
   if (newfile.name === null) {
@@ -131,8 +127,6 @@ function audioUpload(id) {
 }
 
 function createChapters(data) {
-  console.log("============passing the story id=============");
-  console.log(data.id)
   //use chapterNum to get number of chapters
   for (let i = 1; i <= chapterNum; i++){
     console.log("this chapter audio is: " + chapterAudArray[chapterNum]);
