@@ -20,7 +20,7 @@ footer {
   padding: 0px 30px 10px;
 }
 div.fullwidth-header{
-  background-image: url(/images/FairytaleTours-HeaderImage.jpg);
+  background-image: url(../images/FairytaleTours-HeaderImage.jpg);
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
@@ -115,4 +115,106 @@ ul#nav-custom li{
 }
 nav{
   width: 100%;
+}
+
+button#next-chapter {
+  display: block;
+  margin: 20px auto;
+  position: relative;
+  width: 75px;
+  height: 75px;
+  background-color: #fff;
+  border: 1px solid #15804B;
+  border-radius: 50%;
+  color: #15804B;
+  box-sizing: border-box;
+  line-height: 11px;
+  font-size: 11px;
+  text-transform: uppercase;
+  transition-duration: 1s;
+}
+button#next-chapter:after{
+content:'';
+background-color: #15804B;
+display: block;
+width: 80px;
+height: 1px;
+position: absolute;
+right:-90px; 
+top: 34px;
+}
+
+button#next-chapter:before{
+content:'';
+background-color: #15804B;
+display: block;
+width: 80px;
+height: 1px;
+position: absolute;
+left:-90px; 
+top: 34px;
+}
+
+label[for=chapter-audio], label[for=story-image] {
+width: 180px;
+font-size: 14px;
+color: #fff;
+padding: 10px;
+display: block;
+background-color: #15804B;
+position: relative;
+border-radius: 5px!important;
+padding-right: 50px!important;
+text-align: right;
+line-height: 18px;
+text-transform: uppercase;
+height: 54px;
+margin-bottom: 20px;
+}
+
+input[type=file] {
+position: absolute;
+left: 10;
+top: 0;
+height: 54px!important;
+width: 180px;
+opacity: 0!important;
+}
+
+h3{
+color: #155F80;
+font-size: 24px;
+}
+
+textarea#story-text {
+margin-bottom: 20px;
+}
+
+.form-group {
+position: relative;
+}
+
+label[for=story-image]:after, label[for=chapter-audio]:after{
+  display: block;
+  color: #fff;
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900;
+  position: absolute;  
+}
+label[for=chapter-audio]:after{
+  content:'\f130';
+  font-size: 30px;
+  right: 14;
+  top: 18;
+}
+label[for=story-image]:after{
+  content:'\f093';
+  font-size: 24px;
+  right: 12;
+  top: 15;
+}
+button#next-chapter:hover {
+  background-color: #15804B;
+  border: 1px solid grey;
+  color: #fff;
 }
