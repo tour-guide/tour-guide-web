@@ -51,7 +51,7 @@ module.exports = {
         let storyID = res.id;
         console.log("==================story id ===============");
         console.log(storyID);
-        res.redirect(307, `/api/story/${storyID});
+        res.redirect(307, `/api/story/${storyID}`);
       })
       .catch(err => {
         res.status(401).json(err);
