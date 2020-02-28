@@ -32,7 +32,7 @@ router.post("/api/story",
 router.post("/api/chapter",
   chapterController.createChap);
 
-router.post("/api/story",
+router.post("/api/rating",
   ratingController.createRating);
 
 // Route for logging user out
@@ -57,20 +57,20 @@ router.get("/api/user_data", (req, res) => {
   }
 });
 
-router.get("/api/story",
+router.get("/api/user/:id",
   storyController.getStoryByUser);
 
-router.get("/api/story",
-  storyController.getStoryByLocation);
+//router.get("/api/story",
+  //storyController.getStoryByLocation);
 
 router.get("/api/story",
-  storyController.getStories);
+  storyController.getStory);
 
-router.get("/api/chapter",
+router.get("/api/chapters/:storyID",
   chapterController.getAllChaps);
 
-router.get("/api/chapter",
-  chapterController.getOneChap);
+//router.get("/api/chapter",
+  //chapterController.getOneChap);
 
 router.get("/api/story",
   ratingController.getRatingsForStory);
@@ -78,20 +78,20 @@ router.get("/api/story",
 router.get("/api/story",
   ratingController.getRatingsForUser);
 
-router.put("/api/signup",
-  userController.updateUser);
+//router.put("/api/signup",
+  //userController.updateUser);
 
-router.put("/api/story",
-  storyController.updateStory);
+//router.put("/api/story",
+  //storyController.updateStory);
 
-router.put("/api/chapter",
-  chapterController.updateChap);
+//router.put("/api/chapter",
+  //chapterController.updateChap);
 
-router.put("/api/story",
-  ratingController.updateRating);
+//router.put("/api/story",
+  //ratingController.updateRating);
 
-router.put("/api/signup",
-  userController.ghostUser);
+//router.put("/api/signup",
+  //userController.ghostUser);
 
 router.delete("/api/story",
   storyController.deleteStory);
