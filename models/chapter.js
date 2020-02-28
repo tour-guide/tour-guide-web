@@ -37,20 +37,6 @@ module.exports = (sequelize, DataTypes) => {
         len: [1]
       }
     },
-    chapCity: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        len: [1]
-      }
-    },
-    chapState: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        len: [1]
-      }
-    },
     chapAudio: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -60,14 +46,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     chapLong: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [-90, 90]
       }
     },
     chapLat: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [-180, 180]
       }
