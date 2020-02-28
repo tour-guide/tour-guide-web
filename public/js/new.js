@@ -26,6 +26,7 @@ $(document).ready(function () {
     createStory(storyMeta);
   });
 
+
   $("#next-chapter").on("click", () => {
     //increment chapter number
     chapterNum++;

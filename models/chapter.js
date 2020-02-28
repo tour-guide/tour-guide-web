@@ -17,6 +17,20 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     chapLocation: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      validate: {
+        len: [1]
+      }
+    },
+    chapCity: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1]
+      }
+    },
+    chapState:{
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
@@ -42,6 +56,20 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len: [1]
+      }
+    },
+    chapLong: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        len: [-90, 90]
+      }
+    },
+    chapLat: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        len: [-180, 180]
       }
     }
   });

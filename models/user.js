@@ -41,6 +41,13 @@ module.exports = (sequelize, DataTypes) => {
     profilePic: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    averageRating: {
+      type:DataTypes.DECIMAL,
+      allowNull: true,
+      validate: {
+        len: [0, 5]
+      }
     }
   });
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database

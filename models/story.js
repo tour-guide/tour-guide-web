@@ -36,6 +36,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [1]
       }
+    },
+    averageRating: {
+      type:DataTypes.DECIMAL,
+      allowNull: true,
+      validate: {
+        len: [0, 5]
+      }
     }
   });
 
