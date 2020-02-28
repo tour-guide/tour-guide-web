@@ -4,27 +4,29 @@ module.exports = {
   // get ratings by user
   getRatingsForUser: (req, res) => {
     const id = req.params.id;
-    db.Rating.find({
-      where: { userId: id }
-    })
-      .then()
-      // logic in here to make average
-      .then(rating => {
-        res.json(rating);
-      });
+    db.Rating.findAll({
+      where: { userId: id },
+      attributes: [
+        [sequelize.fn("avg", sequelize.col("rating")), "ratingAverage"]
+      ]
+    }).then(rating => {
+      console.log(rating);
+      res.json(rating);
+    });
   },
 
   // get ratings by story
   getRatingsForStory: (req, res) => {
     const id = req.params.id;
-    db.Rating.find({
-      where: { storyId: id }
-    })
-      .then()
-      // logic in here to make average
-      .then(rating => {
-        res.json(rating);
-      });
+    db.Rating.findAll({
+      where: { storyId: id },
+      attributes: [
+        [sequelize.fn("avg", sequelize.col("rating")), "ratingAverage"]
+      ]
+    }).then(rating => {
+      console.log(rating);
+      res.json(rating);
+    });
   },
 
   // create rating with a number out of 5 and storyID and userID
