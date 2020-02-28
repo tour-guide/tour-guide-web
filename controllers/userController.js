@@ -1,27 +1,64 @@
-const express = require("express");
+const db = require("../models");
 
-const router = express.Router();
+module.exports = {
+  // get specific user
+  getUser: (req, res) => {
+    const id = req.params.id;
+    db.User
+      .find({
+        where: { id: id }
+      })
+      .then(user => {
+        res.json(user);
+      });
+  },
 
-const user = require("../models/user.js");
+  // create user with first name, last name, email, password, bio, profile pic, stories
+  createUser: (req, res) => {
+    const { firstName, lastName, email, password, profile } = req.body;
+    db.User.create({
+      email,
+      password,
+      firstName,
+      lastName,
+      profile
+    })
+      .then(() => {
+        res.redirect(307, "/api/login");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  },
 
-// get specific user
+  // update user first/last name, email, password, bio, profile pic, stories
+  updateUser: (req, res) => {
+    const id = req.params.id;
+    const updates = req.body.updates;
+    db.user
+      .find({
+        where: { id: id }
+      })
+      .then(user => {
+        return user.updateAttributes(updates);
+      })
+      .then(updatedUser => {
+        res.json(updatedUser);
+      });
+  },
 
-// create user with first name, last name, email, password, bio, profile pic, stories
-
-// update user first/last name, email, password, bio, profile pic, stories
-
-// delete specific user
-
-// "/rest of the url for the stories page"
-router.get("/", (req, res) => {
-  user.all(data => {
-    var hbsObject = {
-      story: data
-    };
-    console.log(hbsObject);
-    res.render("", hbsObject);
-  });
-});
-
-// Export routes for server.js to use.
-module.exports = router;
+  // ghost specific user ---- WORK ON THIS TO HARD CODE TO UPDATE TO NO PERSONAL DETAILS
+  ghostUser: (req, res) => {
+    const id = req.params.id;
+    db.user
+      .find({
+        where: { id: id }
+      })
+      .then(user => {
+        return user.updateAttributes(updates);
+      })
+      .then(updatedUser => {
+        res.json(updatedUser);
+      });
+  }
+};
