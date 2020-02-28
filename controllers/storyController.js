@@ -1,11 +1,20 @@
 const db = require("../models");
-// const { storyName, location, info, storyImage } = storyMeta;
 
 module.exports = {
   // get all stories
   getStories: (req, res) => {
     db.Story.findAll().then(storyMeta => {
       res.render("/api/story", storyMeta);
+    });
+  },
+
+  //get a single story
+  getStory: (req, res) => {
+    const StoryId = req.body.StoryId;
+    db.Story.findOne({
+      where: StoryId
+    }).then(storyMeta => {
+      res.json(storyMeta);
     });
   },
 
@@ -37,7 +46,6 @@ module.exports = {
 
   createStory: (req, res) => {
     const { storyName, location, storyCity, storyState, storyTransit, info, storyImage } = req.body;
-
     db.Story.create({
       storyName,
       location,
@@ -47,13 +55,11 @@ module.exports = {
       info,
       storyImage
     })
-      .then(() => {
-        let storyID = res.id;
-        console.log("==================story id ===============");
-        console.log(storyID);
-        res.redirect(307, `/api/story/${storyID}`);
+      .then(data => {
+        res.json(data);
       })
       .catch(err => {
+        console.log(err)
         res.status(401).json(err);
       });
   },
