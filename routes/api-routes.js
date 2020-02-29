@@ -66,8 +66,8 @@ router.get("/api/user/:id",
 router.get("/api/story/:StoryId",
   storyController.getStory);
 
-router.get("/api/stories/:UserId",
-  storyController.getStoriesByUser);
+router.get("/stories",
+  storyController.getStories);
 
 router.get("/api/chapters/:StoryId",
   chapterController.getAllChaps);
@@ -75,11 +75,11 @@ router.get("/api/chapters/:StoryId",
 //router.get("/api/chapter",
 //chapterController.getOneChap);
 
-router.get("/api/story",
-  ratingController.getRatingsForStory);
+//router.get("/api/story",
+  //ratingController.getRatingsForStory);
 
-router.get("/api/story",
-  ratingController.getRatingsForUser);
+//router.get("/api/story",
+  //ratingController.getRatingsForUser);
 
 //router.put("/api/signup",
 //userController.updateUser);
