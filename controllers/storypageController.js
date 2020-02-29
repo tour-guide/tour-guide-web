@@ -25,10 +25,10 @@ function renderStory(req, res) {
         storyImage: storyMeta.dataValues.storyImage,
         storyName: storyMeta.dataValues.storyName,
         chapter: chapsArray,
-      })
+      });
     });
   });
-};
+}
 
 router.get("/story/:slug", renderStory);
 
