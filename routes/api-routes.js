@@ -58,7 +58,7 @@ router.get("/api/user_data", (req, res) => {
 });
 
 router.get("/api/user/:id",
-  storyController.getStoryByUser);
+  userController.getUser);
 
 //router.get("/api/story",
 //storyController.getStoryByLocation);
