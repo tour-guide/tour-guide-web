@@ -91,14 +91,15 @@
                                         placeholder="State/Providence">
                                 </div>
                                 <div class="form-group col s12">
-                                    <a class='dropdown-trigger btn' href='#' data-target='story-transit'>This tour best enjoyed via:</a>
                                     <!-- Dropdown Structure -->
-                                    <ul id='story-transit' class='dropdown-content'>
-                                        <li value="transit"><a href="#!">Public transit</a></li>
-                                        <li value="driving"><a href="#!">Driving</a></li>
-                                        <li value="walking"><a href="#!">Walking</a></li>
-                                        <li value="cycling"><a href="#!">Cycling</a></li>
-                                    </ul>
+                                    <label>This tour is best enjoyed via:</label>
+                                    <select class="browser-default">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="1">Public Transit</option>
+                                        <option value="2">Driving</option>
+                                        <option value="3">Walking</option>
+                                        <option value="4">Cycling</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col s12">
                                     <label for="story-image">Upload Tour Featured Image</label>
@@ -131,7 +132,7 @@
                                     <input type="file" class="waves-effect waves-light btn-large fairy-button"
                                         data-chapter="1" id="chapter-audio" accept="audio/*">
                                 </div>
-                                <hr>
+                                <br>
                                 <button type="button" id="next-chapter">Next Chapter</button>
                                 <button type="submit" id="submit-story"
                                     class="waves-effect waves-light btn-large fairy-button">

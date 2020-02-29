@@ -76,7 +76,7 @@ h2{
   color: gray;
 }
 .block {
-  padding: 3%;
+  padding: 30px;
 }
 button.btn-large{
   position: relative;
@@ -217,4 +217,76 @@ button#next-chapter:hover {
   background-color: #15804B;
   border: 1px solid grey;
   color: #fff;
+}
+
+div#story-image img {
+  width: calc(100% + 60px + 1.5rem);
+  margin-top: -30px;
+  margin-left: calc(-30px - 0.75rem);
+  padding: 0px;
+}
+
+div#author-image {
+  border: 1px solid #155F80;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+div#author-image img{
+  width: 100%;
+}
+div#author-block {
+  display: flex;
+}
+div#author{
+  margin-bottom: 10px
+}
+div#author-name {
+  font-size: 24px;
+  font-weight: semi-bold;
+}
+.story-card h2 {
+  color: #155F80;
+  font-size: 30px;
+  text-transform: none!important;
+  padding: 10px 0px;
+  font-weight: bold;
+}
+.story-card h3{
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 993px){
+  footer{
+   position: relative;
+  }
+  footer:after{
+    content:'';
+    background:url(../images/WomanOnHerPhone.png);
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    right: -8%;
+    width: 60%!important;
+    height: 900px;
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
+  .block{
+    background: linear-gradient(to right, #fff calc(50% + 30px), transparent 50%)
+  }
+  }
+  @media only screen and (min-width: 1600px){
+    footer:after{
+    height: 1100px;
+    }
+  }
+
+  select.browser-default {
+    margin-bottom: 20px;
 }
