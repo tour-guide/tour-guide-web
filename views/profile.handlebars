@@ -15,15 +15,9 @@
                         {{#if stories }}
                         {{#each stories }}
                         <div class="col xl4 m6 s12 story-card">
-                            <div id="story-image">{{ storyImage }}</div>
+                            <div id="story-image"><img src={{ storyImage }} alt={{ storyName }}></div>
                             <h2 id="story-title">{{ storyName }}</h2>
-                            <div id="author-block">
-                                <div id="author-image">{{ user.profilePic }}</div>
-                                <div id="author">
-                                    <h6>CONTRIBUTED BY</h6>
-                                    <div id="author-name">{{ user.firstName }} {{ user.lastName }}</div>
-                                </div>
-                            </div>
+                            <div id="info-block">{{ info }}</div>
                             <button type="button" id="start-story" data-story={{ slug }}>Start Story</button>
                         </div>
                         {{/each}}

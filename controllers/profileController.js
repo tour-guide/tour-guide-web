@@ -17,13 +17,18 @@ function renderUserProfile(req, res) {
   })
     .then(user => {
       console.log("============== profile page for user ==============")
-      console.log(user);
+      console.log(user.dataValues);
       db.Story.findAll({
         where: { UserId: id }
       }).then(stories => {
+        const userStories = stories.map(story => {
+          return story.dataValues;
+        });
+        console.log("============== profile stories for user ==============")
+        console.log(userStories);
         res.render("profile", {
-          user: user,
-          stories: stories
+          user: user.dataValues,
+          stories: userStories
         });
       });
     });
