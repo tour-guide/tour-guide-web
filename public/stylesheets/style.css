@@ -232,7 +232,7 @@ button#next-chapter:hover {
 
 .card-action {
   color:#15804B;
-
+}
 div#story-image img {
   width: calc(100% + 60px + 1.5rem);
   margin-top: -30px;
@@ -300,21 +300,20 @@ div#author-name {
     height: 1100px;
     }
   }
-
 select.browser-default {
   margin-bottom: 20px;
 }
 figure {
   margin: 0px 0px 10px!important;
 }
-
-.nav-wrapper ul li svg{
+.nav-wrapper ul li svg {
   fill: #fff;
   width: 50px;
   height: 50px;
   margin-bottom: -15px;
+  text-transform: uppercase;
 }
-.nav-wrapper ul li a{
+.nav-wrapper ul li {
   color: #fff;
   text-transform: uppercase;
 }
@@ -330,7 +329,7 @@ figure {
       padding-left: 40px;
       position: relative;
   }
-  .nav-wrapper ul li svg{
+  .nav-wrapper ul li svg {
       position: absolute;
       left: 0px;
       top: -10px;
