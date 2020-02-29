@@ -341,21 +341,37 @@ figure {
 .card.medium.story-card {
   width: 100%!important;
   padding-bottom: 40px;
+  border-radius: 15px;
+  overflow: hidden;
 }
-
 .card-action a{
   color: #15804B!important;
   font-weight: bold;
   font-size: 18px;
 }
-
 .card-action a:after{
   content:'\f061';
   font-family: 'FontAwesome';
   padding-left: 15px;
+  transition-duration: 0.8s;
+}
+.card-action:hover a:after{
+  content:'\f061';
+  font-family: 'FontAwesome';
+  padding-left: 35px;
+  margin-right: -20px;
+  transition-duration: 0.8s;
 }
 .card-action {
   background: transparent!important;
   border: none!important;
   text-align: right;
+}
+span.card-title {
+  font-weight: 500!important;
+  color: #155F80!important;
+}
+.card-content h6 {
+  font-weight: 700;
+  text-transform: uppercase
 }
