@@ -1,8 +1,5 @@
 const apikey = process.env.APIKEY;
 
-async function getDirections() {
-  
-}
 $(document).ready(getDirections);
 
 function () {
