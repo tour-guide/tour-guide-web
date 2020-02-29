@@ -1,0 +1,40 @@
+<div class="fullwidth-header relative">
+    <h1 class="absolute">{{ user.firstName }} {{ user.lastName }}</h1>
+</div>
+<div class="page-body">
+    <div class="row">
+        <div class="block s12">
+            <div class="row">
+                <div class="col xl6 l12">
+                    <h2>Profile:</h2>
+                    <p>
+                        {{ user.profile }}
+                    </p>
+                    <h2>{{ user.firstName }}'s Stories</h2>
+                    <div id="user-stories">
+                        {{#if stories }}
+                        {{#each stories }}
+                        <div class="col xl4 m6 s12 story-card">
+                            <div id="story-image">{{ storyImage }}</div>
+                            <h2 id="story-title">{{ storyName }}</h2>
+                            <div id="author-block">
+                                <div id="author-image">{{ user.profilePic }}</div>
+                                <div id="author">
+                                    <h6>CONTRIBUTED BY</h6>
+                                    <div id="author-name">{{ user.firstName }} {{ user.lastName }}</div>
+                                </div>
+                            </div>
+                            <button type="button" id="start-story" data-story={{ slug }}>Start Story</button>
+                        </div>
+                        {{/each}}
+                        {{else}}
+                        <h2>This user hasn't created any stories yet!</h2>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/profile.js"></script>
