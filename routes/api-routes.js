@@ -63,8 +63,8 @@ router.get("/api/user/:id",
 //router.get("/api/story",
 //storyController.getStoryByLocation);
 
-router.get("/api/story/:StoryId",
-  storyController.getStory);
+//router.get("/api/story/:StoryId",
+//storyController.getStory);
 
 router.get("/stories",
   storyController.getStories);
