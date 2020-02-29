@@ -338,3 +338,24 @@ figure {
       height: 40px;
   }
 }
+.card.medium.story-card {
+  width: 100%!important;
+  padding-bottom: 40px;
+}
+
+.card-action a{
+  color: #15804B!important;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.card-action a:after{
+  content:'\f061';
+  font-family: 'FontAwesome';
+  padding-left: 15px;
+}
+.card-action {
+  background: transparent!important;
+  border: none!important;
+  text-align: right;
+}
