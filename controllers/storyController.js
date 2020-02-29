@@ -50,7 +50,8 @@ module.exports = {
       storyState,
       storyTransit,
       info,
-      storyImage
+      storyImage,
+      UserId: req.user.id
     })
       .then(data => {
         res.json(data);
