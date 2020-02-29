@@ -15,8 +15,9 @@ const modeType = "";
 
 // const directions = function (startingPoint, endingPoint, wayPoints, modeType, apikey) {
 const directions = function () {
-  const queryURL = "https://maps.googleapis.com/maps/api/directions/json?origin=4605+Radcliff+Road,Raleigh,NC&destination=2821+Adershot+Drive,Wake+Forest,NC&waypoints=933+Brookside+Drive,Raleigh,NC|204+Abercrobie,%20Wake+Forest,NC&mode=driving&key=" + apikey;
+  //const queryURL = "https://maps.googleapis.com/maps/api/directions/json?origin=4605+Radcliff+Road,Raleigh,NC&destination=2821+Adershot+Drive,Wake+Forest,NC&waypoints=933+Brookside+Drive,Raleigh,NC|204+Abercrobie,%20Wake+Forest,NC&mode=driving&key=" + apikey;
   // const queryURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" + startingPoint + "&destination=" + endingPoint + "&waypoints=" + wayPoints + "&mode=" + modeType + "&key=" + apikey;
+  const queryURL = "https://www.google.com/maps/embed/v1/directions?key=" + apikey + "&origin=4605+Radcliff+Road,Raleigh,NC&destination=2821+Adershot+Drive,Wake+Forest,NC&waypoints=933+Brookside+Drive,Raleigh,NC|204+Abercrobie,%20Wake+Forest,NC&mode=driving";
   $.ajax({
     url: queryURL,
     method: "GET"
