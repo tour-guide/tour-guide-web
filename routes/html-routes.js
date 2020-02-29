@@ -15,7 +15,7 @@ module.exports = app => {
   app.get("/login", (req, res) => {
     // If the user is already signed in send them to the logged in home page
     if (req.user) {
-      res.redirect("/");
+      res.redirect("/profile");
     }
     // otherwise, send them to login
     res.sendFile(path.join(__dirname, "../public/login.html"));
@@ -24,20 +24,6 @@ module.exports = app => {
   app.get("/signup", (req,res) => {
     // if the user clicks the signup option, send them straight to signup
     res.sendFile(path.join(__dirname, "../public/signup.html"));
-  });
-
-  // this route checks if the user is authenticated before passing them along
-  // If a user who is not logged in tries to access this route,
-  // they will be redirected to the login page by the middleware
-  app.get("/profile", isAuthenticated, (req, res) => {
-    //view the private profile of the member
-    res.sendFile(path.join(__dirname, "../public/profile.html"));
-  });
-
-  //this route takes a user param and returns a user's public profile page
-  app.get("/profile/:user", (req, res) => {
-    //view the public profile of a given member
-    res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
   app.get("/new", isAuthenticated, (req, res) => {
