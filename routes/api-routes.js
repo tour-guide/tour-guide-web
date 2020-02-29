@@ -76,10 +76,10 @@ router.get("/api/chapters/:StoryId",
 //chapterController.getOneChap);
 
 //router.get("/api/story",
-  //ratingController.getRatingsForStory);
+//ratingController.getRatingsForStory);
 
 //router.get("/api/story",
-  //ratingController.getRatingsForUser);
+//ratingController.getRatingsForUser);
 
 //router.put("/api/signup",
 //userController.updateUser);
