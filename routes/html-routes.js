@@ -13,9 +13,9 @@ module.exports = app => {
   });
 
   app.get("/login", (req, res) => {
-    // If the user is already signed in send them to their member profile page
+    // If the user is already signed in send them to the logged in home page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/");
     }
     // otherwise, send them to login
     res.sendFile(path.join(__dirname, "../public/login.html"));
@@ -27,15 +27,17 @@ module.exports = app => {
   });
 
   // this route checks if the user is authenticated before passing them along
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, (req, res) => {
-    //if the member chooses
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+  // If a user who is not logged in tries to access this route,
+  // they will be redirected to the login page by the middleware
+  app.get("/profile", isAuthenticated, (req, res) => {
+    //view the private profile of the member
+    res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
-  app.get("/profile/:member", (req, res) => {
+  //this route takes a user param and returns a user's public profile page
+  app.get("/profile/:user", (req, res) => {
     //view the public profile of a given member
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
   app.get("/new", isAuthenticated, (req, res) => {
@@ -45,7 +47,7 @@ module.exports = app => {
 
   app.get("/story/:story-slug", (req, res) => {
     //send the user to the selected story
-    res.sendFile(path.join(__dirname, "../public/stories.html"));
+    res.sendFile(path.join(__dirname, "../public/story.html"));
   });
 
 };

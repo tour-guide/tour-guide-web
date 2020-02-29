@@ -29,19 +29,16 @@ module.exports = {
   },
 
   // get stories from a specific user
-  getStoryByUser: (req, res) => {
-    let query;
-    if (req.params.userId) {
-      query = Story.findAll({
-        include: [
-          { model: User, where: { id: req.params.userId } },
-          { model: Story }
-        ]
-      });
-    } else {
-      query = Story.findAll({ include: [Story, User] });
-    }
-    return query.then(story => res.json(story));
+  getStoriesByUser: (req, res) => {
+    const { UserId } = req.params;
+    console.log(`Getting stories by ${UserId}`);
+    db.Story.findAll({
+      where: {
+        UserId: UserId
+      }
+    }).then(stories => {
+      res.json(stories);
+    });
   },
 
   createStory: (req, res) => {
