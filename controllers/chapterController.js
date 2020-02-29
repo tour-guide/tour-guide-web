@@ -24,14 +24,18 @@ module.exports = {
 
   // create chapter with number, name, location and storyID
   createChap: (req, res) => {
-    const { chapNumber, chapName, chapLocation } = req.body;
+    const { StoryId, chapNumber, chapName, chapLocation, chapCity, chapState, chapAudio } = req.body;
     db.Chapter.create({
+      StoryId,
       chapNumber,
       chapName,
-      chapLocation
+      chapLocation,
+      chapCity,
+      chapState,
+      chapAudio
     })
-      .then(() => {
-        res.redirect(307, "/api/login");
+      .then(data => {
+        res.json(data);
       })
       .catch(err => {
         res.status(401).json(err);

@@ -58,15 +58,18 @@ router.get("/api/user_data", (req, res) => {
 });
 
 router.get("/api/user/:id",
-  storyController.getStoryByUser);
+  userController.getUser);
 
 //router.get("/api/story",
 //storyController.getStoryByLocation);
 
-router.get("/api/story",
+router.get("/api/story/:StoryId",
   storyController.getStory);
 
-router.get("/api/chapters/:storyID",
+router.get("/api/stories/:UserId",
+  storyController.getStoriesByUser);
+
+router.get("/api/chapters/:StoryId",
   chapterController.getAllChaps);
 
 //router.get("/api/chapter",

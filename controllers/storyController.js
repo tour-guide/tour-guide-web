@@ -1,11 +1,20 @@
 const db = require("../models");
-// const { storyName, location, info, storyImage } = storyMeta;
 
 module.exports = {
   // get all stories
   getStories: (req, res) => {
     db.Story.findAll().then(storyMeta => {
       res.render("/api/story", storyMeta);
+    });
+  },
+
+  //get a single story
+  getStory: (req, res) => {
+    const StoryId = req.body.StoryId;
+    db.Story.findOne({
+      where: StoryId
+    }).then(storyMeta => {
+      res.json(storyMeta);
     });
   },
 
@@ -20,24 +29,20 @@ module.exports = {
   },
 
   // get stories from a specific user
-  getStoryByUser: (req, res) => {
-    let query;
-    if (req.params.userId) {
-      query = Story.findAll({
-        include: [
-          { model: User, where: { id: req.params.userId } },
-          { model: Story }
-        ]
-      });
-    } else {
-      query = Story.findAll({ include: [Story, User] });
-    }
-    return query.then(story => res.json(story));
+  getStoriesByUser: (req, res) => {
+    const { UserId } = req.params;
+    console.log(`Getting stories by ${UserId}`);
+    db.Story.findAll({
+      where: {
+        UserId: UserId
+      }
+    }).then(stories => {
+      res.json(stories);
+    });
   },
 
   createStory: (req, res) => {
     const { storyName, location, storyCity, storyState, storyTransit, info, storyImage } = req.body;
-
     db.Story.create({
       storyName,
       location,
@@ -45,13 +50,11 @@ module.exports = {
       storyState,
       storyTransit,
       info,
-      storyImage
+      storyImage,
+      UserId: req.user.id
     })
-      .then(() => {
-        let storyID = res.id;
-        console.log("==================story id ===============");
-        console.log(storyID);
-        res.redirect(307, `/api/story/${storyID}`);
+      .then(data => {
+        res.json(data);
       })
       .catch(err => {
         res.status(401).json(err);

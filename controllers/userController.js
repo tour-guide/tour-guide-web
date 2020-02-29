@@ -5,11 +5,19 @@ module.exports = {
   getUser: (req, res) => {
     const id = req.params.id;
     db.User
-      .find({
+      .findOne({
         where: { id: id }
       })
       .then(user => {
-        res.json(user);
+        //only return specific fields so we don't accidentally end up with a password
+        const { firstName, lastName, profile, email, profilePic } = user;
+        res.json({
+          firstName,
+          lastName,
+          profile,
+          email,
+          profilePic
+        });
       });
   },
 
