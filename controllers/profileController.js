@@ -3,11 +3,6 @@ const express = require("express");
 const router = express.Router();
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-router.get("/profile", isAuthenticated, renderUserProfile);
-
-router.get("/profile/:id", renderPublicProfile);
-
-
 function renderUserProfile(req, res) {
 
   const id = req.user.id;
@@ -16,16 +11,12 @@ function renderUserProfile(req, res) {
     attributes: { exclude: ["password"] }
   })
     .then(user => {
-      console.log("============== profile page for user ==============")
-      console.log(user.dataValues);
       db.Story.findAll({
         where: { UserId: id }
       }).then(stories => {
         const userStories = stories.map(story => {
           return story.dataValues;
         });
-        console.log("============== profile stories for user ==============")
-        console.log(userStories);
         res.render("profile", {
           user: user.dataValues,
           stories: userStories
@@ -34,26 +25,9 @@ function renderUserProfile(req, res) {
     });
 }
 
-function renderPublicProfile(req, res) {
+router.get("/profile", isAuthenticated, renderUserProfile);
 
-  const id = req.params.id;
-  db.User.findOne({
-    where: { id: id },
-    attributes: { exclude: ["password"] }
-  })
-    .then(user => {
-      console.log("============== public profile page for user ==============")
-      console.log(user);
-      db.Story.findAll({
-        where: { UserId: id }
-      }).then(stories => {
-        res.render("profile", {
-          user: user,
-          stories: stories
-        });
-      });
-    });
-}
+//router.get("/profile/:id", renderPublicProfile);
 
 module.exports = router;
 
