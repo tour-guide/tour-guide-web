@@ -1,18 +1,22 @@
 <div class="fullwidth-header relative">
-    <h1 class="absolute">{{ user.firstName }} {{ user.lastName }}</h1>
+    <h1 class="absolute">Once Upon a Time...</h1>
 </div>
 <div class="page-body">
     <div class="row">
         <div class="block s12">
             <div class="row">
                 <div class="col xl6 l12">
-                    <h2>Profile:</h2>
-                    <p>
-                        {{ user.profile }}
-                    </p>
-                    <h2>{{ user.firstName }}'s Stories</h2>
+                    <h2 class="chooseStory">START A NEW STORY</h2>
+                    <p>See the stories already in our library!</p>
+                            <!--<input type="dropdown" class="form-control" id="locationEnterOption">
+                            <a class="dropdown-trigger btn" href='#' data-target='dropdown1' id="locationDropdown"><i
+                                    class="fas fa-filter"></i></a>
+                            <ul id='dropdown1' class='dropdown-content'>
+                                <li><a href="#!">North Carolina<i class="material-icons">cloud</i></a></li>
+                                <li><a href="#!">London<i class="material-icons">cloud</i></a></li>
+                                <li><a href="#!">Washington DC<i class="material-icons">cloud</i></a></li>
+                            </ul>-->
                     <div id="user-stories">
-                        {{#if stories }}
                         {{#each stories }}
                         <div class="row">
                             <div class="col s12 m7">
@@ -23,6 +27,7 @@
                                     <div class="card-content">
                                         <span class="card-title" id="story-title">{{ storyName }}</span>
                                         <h6>{{ location }}</h6>
+                                        <!--<h6>A STORY BY: {{ user.firstName }} {{ user.lastName }}</h6>-->
                                         <p>{{ info }}</p>
                                     </div>
                                     <div class="card-action">
@@ -32,9 +37,6 @@
                             </div>
                         </div>
                         {{/each}}
-                        {{else}}
-                        <h2>This user hasn't created any stories yet!</h2>
-                        {{/if}}
                     </div>
                 </div>
             </div>
@@ -42,4 +44,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/profile.js"></script>
+
+
+<script type="text/javascript" src="js/stories.js"></script>

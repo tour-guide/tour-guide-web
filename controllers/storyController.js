@@ -1,10 +1,33 @@
 const db = require("../models");
 
 module.exports = {
-  // get all stories
+  // get all stories and associated user data
   getStories: (req, res) => {
-    db.Story.findAll().then(storyMeta => {
-      res.render("/api/story", storyMeta);
+
+    db.Story.findAll({}).then(storyMeta => {
+
+
+      const allStories = storyMeta.map(story => {
+        //db.User.findOne({
+        //where: { id: story.dataValues.UserId },
+        //attributes: { exclude: ["password"] }
+        //}).then(user => {
+        //console.log("============found User=============");
+        //console.log(user.dataValues);
+        //let storyObj = {
+        // story: story.dataValues,
+        // user: user
+        //};
+        //return storyObj;
+        console.log(story.dataValues);
+        return story.dataValues;
+        //});
+      });
+      console.log("============allStories=============");
+      console.log(allStories);
+      res.render("stories", {
+        stories: allStories
+      });
     });
   },
 
