@@ -20,7 +20,15 @@ app.use(express.static("public"));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", 
+  exphbs({ defaultLayout: "main", 
+    helpers: { section: function(name, options) {
+      if (!this._sections) this._sections = {};
+      this._sections[name] = options.fn(this);
+      return null;
+    }
+    }
+  }));
 app.set("view engine", "handlebars");
 
 // Requiring our routes
