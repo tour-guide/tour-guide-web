@@ -9,7 +9,7 @@ module.exports = app => {
   app.get("/", (req, res) => {
     //we don't require sign up to see available stories
     //this route takes them to a list of available stories
-    res.sendFile(path.join(__dirname, "../public/home.html"));
+    res.redirect("/stories");
   });
 
   app.get("/login", (req, res) => {

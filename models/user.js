@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = models => {
-    User.hasMany(models.Story, {
+    models.User.hasMany(models.Story, {
       onDelete: "SET NULL"
     });
   };

@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Chapter.associate = models => {
-    Chapter.belongsTo(models.Story, {
+    models.Chapter.belongsTo(models.Story, {
       foreignKey: {
         allowNull: false
       }

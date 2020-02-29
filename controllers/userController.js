@@ -32,7 +32,7 @@ module.exports = {
       profile
     })
       .then(() => {
-        res.redirect(307, "/api/login");
+        res.redirect(307, "/profile");
       })
       .catch(err => {
         res.status(401).json(err);
