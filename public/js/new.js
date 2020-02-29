@@ -31,12 +31,12 @@ $(document).ready(function () {
     //increment chapter number
     chapterNum++;
     //get prev city/state
-    if ($("#story-city").val()){
+    if ($("#story-city").val()) {
       storyCity = $("#story-city").val().trim();
     } else {
       storyCity = "City";
     }
-    if ($("#story-state").val()){
+    if ($("#story-state").val()) {
       storyState = $("#story-state").val().trim();
     } else {
       storyState = "State";
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
 });
 
-$(document).on("change", "#chapter-audio", function() {
+$(document).on("change", "#chapter-audio", function () {
   cNum = $(this).data("chapter")
   audioUpload(cNum);
 });
@@ -128,7 +128,7 @@ function audioUpload(id) {
 
 function createChapters(data) {
   //use chapterNum to get number of chapters
-  for (let i = 1; i <= chapterNum; i++){
+  for (let i = 1; i <= chapterNum; i++) {
     console.log("this chapter audio is: " + chapterAudArray[chapterNum]);
     $.post("/api/chapter", {
       StoryId: data.id,
@@ -161,3 +161,7 @@ function createStory(storyMeta) {
       createChapters(data);
     });
 }
+
+$(document).ready(function () {
+  $('select').formSelect();
+});
