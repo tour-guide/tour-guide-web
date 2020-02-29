@@ -290,6 +290,7 @@ div#author-name {
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
+    pointer-events: none;
   }
   .block{
     background: linear-gradient(to right, #fff calc(50% + 30px), transparent 50%)
