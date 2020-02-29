@@ -31,9 +31,9 @@ module.exports = app => {
     res.sendFile(path.join(__dirname, "../public/new.html"));
   });
 
-  app.get("/story/:story-slug", (req, res) => {
+  //app.get("/story/:story-slug", (req, res) => {
     //send the user to the selected story
-    res.sendFile(path.join(__dirname, "../public/story.html"));
-  });
+    //res.sendFile(path.join(__dirname, "../public/story.html"));
+  //});
 
 };
