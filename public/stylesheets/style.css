@@ -287,6 +287,40 @@ div#author-name {
     }
   }
 
-  select.browser-default {
-    margin-bottom: 20px;
+select.browser-default {
+  margin-bottom: 20px;
+}
+figure {
+  margin: 0px 0px 10px!important;
+}
+
+.nav-wrapper ul li svg{
+  fill: #fff;
+  width: 50px;
+  height: 50px;
+  margin-bottom: -15px;
+}
+.nav-wrapper ul li a{
+  color: #fff;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 992px){
+  .nav-wrapper ul{
+      width: 160;
+      margin-top: 15px;
+  }
+  .nav-wrapper ul li{
+      width: 160;
+      height: 55px;
+      padding-left: 40px;
+      position: relative;
+  }
+  .nav-wrapper ul li svg{
+      position: absolute;
+      left: 0px;
+      top: -10px;
+      width: 40px;
+      height: 40px;
+  }
 }
