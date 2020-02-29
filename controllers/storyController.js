@@ -3,10 +3,7 @@ const db = require("../models");
 module.exports = {
   // get all stories and associated user data
   getStories: (req, res) => {
-
     db.Story.findAll({}).then(storyMeta => {
-
-
       const allStories = storyMeta.map(story => {
         //db.User.findOne({
         //where: { id: story.dataValues.UserId },
@@ -33,9 +30,9 @@ module.exports = {
 
   //get a single story
   getStory: (req, res) => {
-    const StoryId = req.body.StoryId;
+    const slug = req.body.slug;
     db.Story.findOne({
-      where: StoryId
+      where: slug
     }).then(storyMeta => {
       res.json(storyMeta);
     });

@@ -5,6 +5,7 @@ const session = require("express-session");
 const passport = require("./config/passport");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
+const path = require("path");
 
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
@@ -15,7 +16,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
@@ -33,10 +34,12 @@ app.set("view engine", "handlebars");
 
 // Requiring our routes
 const profileController = require("./controllers/profileController.js");
+const storypageController = require("./controllers/storypageController.js");
 require("./routes/html-routes.js")(app);
 app.use(require("./routes/api-routes.js"));
 require("./routes/s3-routes.js")(app);
 app.use(profileController);
+app.use(storypageController);
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
