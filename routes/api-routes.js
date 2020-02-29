@@ -66,6 +66,9 @@ router.get("/api/user/:id",
 router.get("/api/story/:StoryId",
   storyController.getStory);
 
+router.get("/api/stories/:UserId",
+  storyController.getStoriesByUser);
+
 router.get("/api/chapters/:StoryId",
   chapterController.getAllChaps);
 

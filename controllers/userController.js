@@ -10,12 +10,13 @@ module.exports = {
       })
       .then(user => {
         //only return specific fields so we don't accidentally end up with a password
-        const { firstName, lastName, profile, email } = user;
+        const { firstName, lastName, profile, email, profilePic } = user;
         res.json({
           firstName,
           lastName,
           profile,
-          email
+          email,
+          profilePic
         });
       });
   },
