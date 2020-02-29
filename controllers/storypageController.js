@@ -18,30 +18,18 @@ function renderStory(req, res) {
       console.log(storyMeta.dataValues);
       console.log("==============Chaps Meta===========");
       const chapsArray = chapsMeta.map(chap => {
-          return chap.dataValues;
-      })
+        return chap.dataValues;
+      });
       console.log(chapsArray);
       res.render("story", {
-          storyImage: storyMeta.dataValues.storyImage,
-          storyName: storyMeta.dataValues.storyName,
-          chapter: chapsArray,
+        storyImage: storyMeta.dataValues.storyImage,
+        storyName: storyMeta.dataValues.storyName,
+        chapter: chapsArray,
       })
     });
   });
 };
-//}).then(stories => {
-//const userStories = stories.map(story => {
-//return story.dataValues;
-//});
-//res.render("profile", {
-//user: user.dataValues,
-//stories: userStories
-//});
-//});
-//});
 
 router.get("/story/:slug", renderStory);
-
-//router.get("/profile/:id", renderPublicProfile);
 
 module.exports = router;
