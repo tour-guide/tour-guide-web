@@ -3,6 +3,31 @@ const express = require("express");
 const router = express.Router();
 const apikey = process.env.APIKEY;
 
+function getDirections(storyMeta, chapsArray) {
+  //convert chapsArray to wayPoints
+  let wayPoints = chapsArray.map(element => {
+    return encodeURIComponent(`${element.chapLocation}, ${element.chapCity}, ${element.chapState}`);
+  });
+  let startingPoint = wayPoints.shift();
+  let endingPoint = wayPoints.pop();
+  //modeType is storyTransit
+  const modeType = storyMeta.storyTransit;
+
+  let queryURL = "https://www.google.com/maps/embed/v1/directions?key=" + apikey;
+  //encode starting point
+  queryURL += "&origin=" + startingPoint;
+  //encode ending point
+  queryURL += "&destination=" + endingPoint;
+  if (wayPoints.length !== 0) {
+    queryURL += "&waypoints=" + wayPoints.join("|");
+  }
+  if (modeType) {
+    queryURL += "&mode=" + modeType;
+  }
+  return queryURL;
+
+}
+
 function renderStory(req, res) {
   const slug = req.params.slug;
   //get the story data
@@ -22,7 +47,7 @@ function renderStory(req, res) {
         return chap.dataValues;
       });
       console.log(chapsArray);
-      const directions = getDirections(storyMeta.dataValues, chapsArray)
+      const directions = getDirections(storyMeta.dataValues, chapsArray);
       res.render("story", {
         storyImage: storyMeta.dataValues.storyImage,
         storyName: storyMeta.dataValues.storyName,
@@ -32,37 +57,6 @@ function renderStory(req, res) {
     });
   });
 }
-
-function getDirections(storyMeta, chapsArray) {
-  //convert chapsArray to wayPoints
-  let wayPoints = chapsArray.map(element => {
-    return encodeURIComponent(`${element.chapLocation}, ${element.chapCity}, ${element.chapState}`);
-  });
-  console.log("=============== wayPoints ==========")
-  console.log(wayPoints);
-  let startingPoint = wayPoints.shift();
-  let endingPoint = wayPoints.pop();
-  //modeType is storyTransit
-  const modeType = storyMeta.storyTransit;
-
-  let queryURL = "https://www.google.com/maps/embed/v1/directions?key=" + apikey;
-  //encode starting point 
-  queryURL += "&origin=" + startingPoint;
-  //encode ending point
-  queryURL += "&destination=" + endingPoint;
-  if (wayPoints.length !== 0) {
-    queryURL += "&waypoints=" + wayPoints.join("|");
-  }
-  if (modeType) {
-    queryURL += "&mode=" + modeType;
-  }
-
-  console.log("=============== Google Directions URL==========")
-  console.log(queryURL);
-  return queryURL;
-
-};
-
 
 router.get("/story/:slug", renderStory);
 
