@@ -18,7 +18,7 @@
                     </div>
                         <div id="directions-map">
                             <iframe width="100%" height="300"
-                                src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAM2sy5zgEts-rs1GJbz0-S1p4TJiDtBpc&origin=4605+Radcliff+Road,Raleigh,NC&destination=2821+Adershot+Drive,Wake+Forest,NC&waypoints=933+Brookside+Drive,Raleigh,NC|204+Abercrobie,%20Wake+Forest,NC&mode=driving"></iframe>
+                                src={{ directions }}></iframe>
                         </div>
                         {{#each chapter}}
                         <div id="chapters">
@@ -39,9 +39,3 @@
         </div>
     </div>
 </div>
-
-{{#section 'script'}}
-
-<script type="text/javascript" src="/js/storypage.js"></script>
-
-{{/section}}
